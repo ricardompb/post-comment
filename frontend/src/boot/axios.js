@@ -1,5 +1,6 @@
 import { boot } from 'quasar/wrappers'
 import axios from 'axios'
+import { securityStore } from 'stores/security'
 
 // Be careful when using SSR for cross-request state pollution
 // due to creating a Singleton instance here;
@@ -10,7 +11,11 @@ import axios from 'axios'
 const api = axios.create({ baseURL: process.env.SERVER_HOST })
 
 api.interceptors.request.use(function (config) {
-  config.headers.Authorization = ''
+  const store = securityStore()
+  const { token } = store.auth
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
   return config
 }, function (error) {
   return Promise.reject(error)

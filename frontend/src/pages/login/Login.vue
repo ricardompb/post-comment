@@ -22,10 +22,12 @@
 <script>
 
 import { defineComponent, ref } from 'vue'
+import { securityStore } from 'stores/security'
 
 export default defineComponent({
   name: 'LoginForm',
   setup () {
+    const store = securityStore()
     const form = ref({
       login: '',
       senha: ''
@@ -37,7 +39,7 @@ export default defineComponent({
     const login = async () => {
       loading.value = true
       try {
-        console.log('')
+        await store.login({ ...form.value })
       } finally {
         loading.value = false
       }

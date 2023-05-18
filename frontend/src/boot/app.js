@@ -42,6 +42,14 @@ export default ({ app }) => {
     {
       path: '/login',
       component: () => import('pages/login/Login.vue')
+    },
+    {
+      path: '/users',
+      component: () => import('layouts/MainLayout.vue'),
+      children: [
+        { path: 'view', component: () => import('pages/user/UserView.vue') },
+        { path: 'form', component: () => import('pages/user/UserForm.vue') }
+      ]
     }
   ])
 }
