@@ -1,15 +1,17 @@
 import { defineStore } from 'pinia'
+import { api } from 'boot/axios'
 
 export const securityStore = defineStore('auth', {
   state: () => ({
-    counter: 0
+    auth: {
+      token: null
+    }
   }),
-  getters: {
-    doubleCount: (state) => state.counter * 2
-  },
   actions: {
-    increment () {
-      this.counter++
+    async login ({ login, senha }) {
+      const res = await api.post('/security/v1/login', { login, senha })
+      this.auth = res.data
+      this.router.push('/')
     }
   }
 })

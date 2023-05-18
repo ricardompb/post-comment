@@ -6,6 +6,7 @@
   "author": "Ricardo Pereira",
   "private": true,
   "scripts": {
+    "lint-fix": "eslint --fix --ext .js,.jsx .",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "npx quasar dev",
