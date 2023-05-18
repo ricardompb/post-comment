@@ -3,8 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "debug:api": "cd backend && npm run dev",
+    "debug:web": "cd frontend && yarn dev",
+    "start": "run-p debug:api debug:web"
+  },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
 }

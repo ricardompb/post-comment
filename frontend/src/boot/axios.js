@@ -7,12 +7,10 @@ import axios from 'axios'
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
-
-console.log(process.env.SERVER_HOST)
-
 const api = axios.create({ baseURL: process.env.SERVER_HOST })
+
 api.interceptors.request.use(function (config) {
-  config.headers.Authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg0MzI2NTQ0fQ.H-iHuIROJaG5Dj6ZAa8hgnpKQDeXhErz1y7bj0OzBjg'
+  config.headers.Authorization = ''
   return config
 }, function (error) {
   return Promise.reject(error)
